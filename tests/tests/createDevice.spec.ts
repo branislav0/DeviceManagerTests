@@ -16,18 +16,19 @@ test.describe('Device Creation – User Story 2', () => {
         await loginPage.loginCorrectCredentials();
     });
 
-    test('should create device and be visible in device list, and remove it', async ({ page }) => {
+    test('should create device, display it in list, then remove it', async ({ page }) => {
         await homePage.addNewDeviceButton.click();
         const deviceName = await createDevicePage.createDevice1();
+
         await expect(page.getByText(deviceName)).toBeVisible();
+
         await page.getByRole('row', { name: deviceName }).locator('span').nth(2).click();
         await homePage.deleteDeviceButton.click();
-        await page.waitForTimeout(1000);
-
     });
 
     test('should keep Save button visible when required fields are empty', async ({ page }) => {
         let apiRequestMade = false;
+
         page.on('request', request => {
             if (request.method() === 'POST' && request.url().includes('/devices')) {
                 apiRequestMade = true;
@@ -44,6 +45,4 @@ test.describe('Device Creation – User Story 2', () => {
 
         expect(apiRequestMade).toBeFalsy();
     });
-
-
 });

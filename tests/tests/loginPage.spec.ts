@@ -9,7 +9,7 @@ test.describe('Login and Logout functionality – Story 1', () => {
     test.beforeEach(async ({ page }) => {
         loginPage = new LoginPage(page);
         homePage = new HomePage(page);
-        await page.goto('https://homework-fe.fly.dev/');
+        await loginPage.gotoLoginPage();
     });
 
     test('should login with valid admin credentials', async ({ page }) => {
@@ -32,9 +32,12 @@ test.describe('Login and Logout functionality – Story 1', () => {
     test('should block access to /devices after logout and reload (404 shown)', async ({ page }) => {
         await loginPage.loginCorrectCredentials();
         await expect(page).toHaveURL('https://homework-fe.fly.dev/devices');
+
         await page.context().storageState({ path: 'auth/state.json' });
+
         await homePage.logoutButton.click();
         await page.reload();
+
         await expect(page.locator('text=404 page not found')).toBeVisible();
     });
 });
