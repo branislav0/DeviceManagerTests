@@ -60,9 +60,10 @@ tests/
 ├── data/ Static test data (credentials)  
 │ └── credentials.json  
 │  
-├── assets/ Screenshots and story diagrams (PNG files)  
-│ └── userStories.png  
-│  
+├── assets/ Screenshots of story files to test (PNG files)  
+│ └── userStories1.pdf  
+│ └── userStories2.png  
+│
 └── README.md  This documentation file
 
 ---
