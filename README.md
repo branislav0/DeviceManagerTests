@@ -64,7 +64,7 @@ tests/
 │ └── userStories1.pdf  
 │ └── userStories2.png  
 │
-└── README.md  This documentation file
+├── README.md  This documentation file
 
 ---
 
