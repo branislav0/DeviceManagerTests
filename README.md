@@ -57,45 +57,12 @@ tests/
 ├── helpers/ Test utilities and shared logic  
 │ └── testHelpers.ts  
 │  
-├── data/ Static test data (credentials)  
-│ └── credentials.json  
-│  
 ├── assets/ Screenshots of story files to test (PNG files)  
 │ └── userStories1.pdf  
 │ └── userStories2.png  
 │
 └──README.md  This documentation file
 
----
-
-## ▶️ How to Run the Tests
-### 1. Install dependencies
-```bash
-npm install
-
-```
-
-### 2. Run all tests (Chromium)
-```bash
-npx playwright test
-```
-### 3. Run a specific test
-
-```bash
-npx playwright test specs/login.spec.ts
-```
-### 4. Open Playwright Test UI
-
-```bash
-npx playwright test --ui
-npx playwright test --headed
-```
-## 🌐 Credentials
-
--   Stored securely in: `tests/data/credentials.json`
-    
--   Format: .json 
-- `{  "username":  "userTghjF4",  "password":  "userTghjF4"  }`
 ## ⚙️ Tech Stack
 
 -   **Playwright🎭**
@@ -121,5 +88,5 @@ npx playwright test --headed
 
 ----------
 
-Made with ❤️ by the CTO of Playwright🎭
+Playwright🎭
 
