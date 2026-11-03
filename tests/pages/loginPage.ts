@@ -1,9 +1,18 @@
 import { Locator, Page } from '@playwright/test';
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 
-const { username, password } = JSON.parse(
-    readFileSync('tests/data/credentials.json', 'utf-8')
-);
+const CREDENTIALS_FILE = 'tests/data/credentials.json';
+
+function loadCredentials(): { username: string; password: string } {
+    if (!existsSync(CREDENTIALS_FILE)) {
+        throw new Error(
+            `Missing ${CREDENTIALS_FILE} – copy tests/data/credentials.example.json to it and fill in the test account`
+        );
+    }
+    return JSON.parse(readFileSync(CREDENTIALS_FILE, 'utf-8'));
+}
+
+const { username, password } = loadCredentials();
 
 export class LoginPage {
     readonly page: Page;

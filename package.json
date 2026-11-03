@@ -1,12 +1,16 @@
 {
   "name": "devicemanagertests",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "private": true,
+  "description": "Playwright E2E tests for a Device Management web app",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report"
+  },
+  "author": "Branislav Čižmár",
+  "license": "UNLICENSED",
   "devDependencies": {
     "@playwright/test": "^1.53.0",
     "@types/node": "^24.0.1"

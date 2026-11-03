@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Local test account (template: tests/data/credentials.example.json)
+tests/data/credentials.json
+
+# Playwright output
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+playwright/.auth/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

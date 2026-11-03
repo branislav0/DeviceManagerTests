@@ -33,8 +33,6 @@ test.describe('Login and Logout functionality – Story 1', () => {
         await loginPage.loginCorrectCredentials();
         await expect(page).toHaveURL('https://homework-fe.fly.dev/devices');
 
-        await page.context().storageState({ path: 'auth/state.json' });
-
         await homePage.logoutButton.click();
         await page.reload();
 

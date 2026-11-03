@@ -1,92 +1,83 @@
+# 🎭 Playwright E2E Tests – Device Management App
 
-# 🎭Playwright E2E Tests🎭 – Device Management App
+End-to-end (E2E) UI tests written with [Playwright](https://playwright.dev) and TypeScript for a web-based device management application.
 
-This project contains end-to-end (E2E) automated UI tests written using [Playwright](https://playwright.dev) for a web-based device management application.
+## 🧪 Tested application
 
-## Overview
-
-This project contains automated UI tests for the Device Management application.
-
-## 🧪Tested Application
-
-The tests target the Device Management application deployed at:  
 [https://homework-fe.fly.dev/](https://homework-fe.fly.dev/)
 
-## 🧪 Overview of Test Coverage
+## ✅ Test coverage
 
-All user stories have been tested as separate specs:
+All user stories are tested as separate specs (the stories are in `tests/assets/`):
 
-### ✅ Story 1 – Login and Logout
+### Story 1 – Login and logout
 - Valid admin login
 - Blocked login with invalid credentials or missing input
-- Logout removes access to `/devices` route
+- Logout removes access to the `/devices` route
 
-### ✅ Story 2 – Device Creation
+### Story 2 – Device creation
 - Device can be created and is visible in the list
 - Device with empty fields can't be submitted (Save remains visible)
 
-### ✅ Story 3 – Device Sorting
-- Devices can be sorted by:
-  - Device name
-  - Country
-  - Created date
-  - OS type
+### Story 3 – Device sorting
+- Devices can be sorted by device name, country, created date and OS type
 
-### ✅ Story 4 – Device Deletion
+### Story 4 – Device deletion
 - Devices can be selected and deleted from the list
 
-### ✅ Happy Path (Full Flow)
-- Logs in, creates device, verifies it's visible, deletes it
+### Happy path (full flow)
+- Logs in, creates a device, verifies it's visible, deletes it
 
----
+## 📂 Project structure
 
-## 📂 Project Structure
-tests/  
-├── specs/  All test specs organized by user story  
-│ ├── login.spec.ts  
-│ ├── createDevice.spec.ts  
-│ ├── deleteDevice.spec.ts  
-│ ├── deviceList.spec.ts  
-│ └── happyPath.spec.ts  
-│  
-├── pages/  Page Object Model (POM)  
-│ ├── loginPage.ts  
-│ ├── homePage.ts  
-│ └── createDevicePage.ts  
-│  
-├── helpers/ Test utilities and shared logic  
-│ └── testHelpers.ts  
-│  
-├── assets/ Screenshots of story files to test (PNG files)  
-│ └── userStories1.pdf  
-│ └── userStories2.png  
-│
-└──README.md  This documentation file
+```
+tests/
+├── tests/                    test specs, one per user story
+│   ├── loginPage.spec.ts
+│   ├── createDevice.spec.ts
+│   ├── deviceList.spec.ts
+│   ├── deleteDevice.spec.ts
+│   └── happyPath.spec.ts
+├── pages/                    Page Object Model (POM)
+│   ├── loginPage.ts
+│   ├── homePage.ts
+│   └── createDevicePage.ts
+├── helpers/                  shared test logic
+│   └── testHelpers.ts
+├── data/
+│   └── credentials.example.json   template for the test account
+└── assets/                   user stories from the assignment (PDF)
+```
 
-## ⚙️ Tech Stack
+## ▶️ How to run
 
--   **Playwright🎭**
-    
--   **TypeScript**
-    
--   **Page Object Model (POM) architecture**
-- **Before each function**
--  **Helper file**
-- **Chromium browser**
+```bash
+npm ci
+npx playwright install chromium
+cp tests/data/credentials.example.json tests/data/credentials.json   # fill in the test account
+npm test
+```
 
+| Command | What it does |
+| --- | --- |
+| `npm test` | run all tests (headless Chromium) |
+| `npm run test:headed` | run with a visible browser |
+| `npm run test:ui` | Playwright UI mode |
+| `npm run report` | open the last HTML report |
+| `npx playwright test tests/tests/loginPage.spec.ts` | run a single spec |
 
+`tests/data/credentials.json` is git-ignored, so the test account never ends up in the repository.
+
+## ⚙️ Tech stack
+
+- Playwright 🎭 + TypeScript
+- Page Object Model (POM) architecture
+- `beforeEach` hooks and a shared helper module
+- Chromium
 
 ## 🔒 Notes
 
--   This suite assumes a clean test state – devices are deleted before each test when needed.
-    
--   No mocking: tests run against real app behavior.
-    
--   Network requests are partially observed for form validation.
-- Only three POMs were used intentionally since the last test runs on the homepage, so a fourth POM was not needed.
-    
-
-----------
-
-Playwright🎭
-
+- The suite assumes a clean test state – devices are deleted before each test when needed.
+- No mocking: tests run against the real app behaviour.
+- Network requests are partially observed for form validation.
+- Only three POMs are used on purpose – the last test runs on the home page, so a fourth POM was not needed.
